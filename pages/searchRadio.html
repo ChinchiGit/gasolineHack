@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GASOLINE HACK - Gasolineras mas baratas cerca de tu ubicación</title>
-    <link rel="stylesheet" href="./css/normalice.css">
-    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <link rel="stylesheet" href="../css/normalice.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
         <h1>GASOLINE HACK</h1>
@@ -14,16 +28,17 @@
     </header>
     <main>
         <section id="seleccionRadio">
-            <label for="distancia">Elige tu radio de búsqueda en Km. : </label>
-            <input
-              type="range"
-              name="distancia"
-              id="distancia"
-              min="10"
-              max="50"
-              step="5"
-              value="25" />
-            <output class="radioBusqueda" for="distancia"></output>
+            <form action="#" id="eleccionRadio">
+                <label for="distancia">Elige tu radio de búsqueda en Km. : </label>
+                <input type="range" name="distancia" id="distancia" min="10" max="50" step="5" value="25" />
+                <output class="radioBusqueda" for="distancia"></output>
+                <label for="combustible">Elige tu combustible:</label>
+                <select name="combustible" id="combustible">
+                    <option value="Precio gasóleo A">Diesel</option>
+                    <option value="Precio gasolina 95 E5">Gasolina</option>
+
+                <input id="buscar" type="submit" value="Buscar">
+            </form>
 
         </section>
 
@@ -36,22 +51,22 @@
             <article id="tablaProvincia">
                 <table class="tabla-gasolineras">
                     <thead>
-                      <tr>
-                        <th>Localidad</th>
-                        <th>Dirección</th>
-                        <th>Marca</th>
-                        <th>Precio gasolina</th>
-                        <th>Precio diesel</th>
-                        <th>Ver en mapa</th>
-                      </tr>
+                        <tr>
+                            <th>LOCALIDAD</th>
+                            <th>DIRECCIÓN</th>
+                            <th>MARCA</th>
+                            <th>€/L GASOLINA</th>
+                            <th>€/L DIESEL</th>
+                        </tr>
                     </thead>
                     <tbody>
-                      </tbody>
-                  </table>
+                    </tbody>
+                </table>
 
+                <button id="mostrarMapa">VER EN EL MAPA</button>
             </article>
             <article id="mapaProvincia">
-
+                <div id="map2"></div>
             </article>
 
         </section>
@@ -64,4 +79,5 @@
     </footer>
     <script src="../script.js"></script>
 </body>
+
 </html>
