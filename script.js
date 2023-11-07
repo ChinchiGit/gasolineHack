@@ -12,6 +12,7 @@ let gasolinerasProvincia = [];
 let botonRadio = document.getElementById("eleccionRadio")
 let radioElegido;
 let gasolinerasRadio = [];
+let criterioOrdenar;
 
 // ******** DECLARACION DE FUNCIONES********
 
@@ -49,7 +50,7 @@ function depurar2() {
     gasolinerasDepurado1[i]["Longitud (WGS84)"] = gasolinerasDepurado1[i]["Longitud (WGS84)"].replace(",", ".");
     gasolinerasDepurado1[i]["Longitud (WGS84)"] = Number(gasolinerasDepurado1[i]["Longitud (WGS84)"]);
 
-    if (gasolinerasDepurado1[i]["Precio Gasolina 95 E5"] != 0) {
+    if (gasolinerasDepurado1[i]["Precio Gasolina 95 E5"] != 0 && gasolinerasDepurado1[i]["Precio Gasoleo A"] != 0) {
       gasolinerasDepurado2.push(gasolinerasDepurado1[i])
     }
 
@@ -67,13 +68,13 @@ function acotarProvincia() {
   };
 };
 
-//ORDENAR POR PRECIO COMBUSTIBLE ELEGIDO
+//ORDENAR POR PRECIO GASOLINA
 function ordenarPorPrecio(listado) {
   listado.sort(function (a, b) {
-    if (a["Precio Gasolina 95 E5"] > b["Precio Gasolina 95 E5"]) {
+    if (a[`${combustibleElegido}`] > b[`${combustibleElegido}`]) {
       return 1;
     }
-    if (a["Precio Gasolina 95 E5"] < b["Precio Gasolina 95 E5"]) {
+    if (a[`${combustibleElegido}`] < b[`${combustibleElegido}`]) {
       return -1;
     }
 
@@ -105,19 +106,19 @@ function pintarTarjetaGasolinera(gasolinera) {
 
 // template para pintar en DOM lista de GASOLINERAS PROVINCIA /RADIO:
 function pintarTabla(listado) {
-
+  let counter = -1;
   const tbody = document.querySelector("table.tabla-gasolineras tbody");
   pintar = listado.slice(0, 10)
   console.log(pintar)
   pintar.forEach((gasolinera) => {
     const tr = document.createElement("tr");
-
+    counter++
+    console.log(counter)
     tr.innerHTML =
       `<td>${gasolinera.Localidad}</td>
     <td>${gasolinera.Dirección}</td>
-    <td>${gasolinera.Rótulo}</td>
-    <td>${gasolinera["Precio Gasolina 95 E5"]}</td>
-    <td>${gasolinera["Precio Gasoleo A"]}</td>
+    <td>${gasolinera[combustibleElegido]} €</td>
+    <td><input type="radio" name="gasolineraSeleccionada" value = ${counter} required></td>
     `;
 
     tbody.appendChild(tr);
@@ -153,10 +154,10 @@ function distanciaHaversine(latitud1, longitud1, latitud2, longitud2) {
 }
 
 //APLICAR HAVERSIN AL OBJETO DEVUELTO POR LA API YA FILTRADO
-function getGasolineraMasCercana() {
-  for (let i = 0; i<gasolinerasDepurado2.length; i++){
-   distanciaHaversine(latitudUser, longitudUser, gasolinerasDepurado2[i].Latitud,gasolinerasDepurado2[i]["Longitud (WGS84)"]);
-   gasolinerasDepurado2[i].distancia = distancia;
+function getGasolineraMasCercana(listado) {
+  for (let i = 0; i < listado.length; i++) {
+    distanciaHaversine(latitudUser, longitudUser, listado[i].Latitud, listado[i]["Longitud (WGS84)"]);
+    listado[i].distancia = distancia;
   }
 
 }
@@ -177,9 +178,9 @@ function ordenarPorDistancia() {
 
 //ACOTAR AL RADIO DE KM ELEGIDO
 
-function acotarRadio (){
-  for (let i = 0; i<gasolinerasDepurado2.length; i++){
-    if (gasolinerasDepurado2[i].distancia <= radioElegido){
+function acotarRadio() {
+  for (let i = 0; i < gasolinerasDepurado2.length; i++) {
+    if (gasolinerasDepurado2[i].distancia <= radioElegido) {
       gasolinerasRadio.push(gasolinerasDepurado2[i])
     }
 
@@ -190,13 +191,13 @@ function acotarRadio (){
 //PINTAR MAPAS
 
 //GASOLINERA MAS CERCANA O ELEGIDA POR EL USUARIO
-function mapa1() {
+function mapa1(listado, n) {
 
-  let map = L.map('map').setView([latitudUser, longitudUser], 15);
+  let map = L.map('map').setView([listado[n].Latitud, listado[n]["Longitud (WGS84)"]], 15);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      
+    maxZoom: 17,
+
   }).addTo(map);
 
   const userMarker = L.marker([latitudUser, longitudUser]).addTo(map);
@@ -205,48 +206,47 @@ function mapa1() {
     iconUrl: '../assets/img/dispenser.png',
     iconSize: [55, 55], // size of the icon
     iconAnchor: [12, 12], // point of the icon which will correspond to marker's location
-    popupAnchor: [0,0] // point fr5om which the popup should open relative to the iconAnchor
+    popupAnchor: [0, 0] // point fr5om which the popup should open relative to the iconAnchor
   })
 
-  const gasolineraMarker = L.marker([gasolinerasDepurado2[0].Latitud, gasolinerasDepurado2[0]["Longitud (WGS84)"]], {icon : gasIcon}).addTo(map);
-  gasolineraMarker.bindPopup(`<b>${gasolinerasDepurado2[0].Dirección}</b><br>Gasolina : ${gasolinerasDepurado2[0]["Precio Gasolina 95 E5"]} €<br>Diesel: ${gasolinerasDepurado2[0]["Precio Gasoleo A"]} €`).openPopup();
-
+  const gasolineraMarker = L.marker([listado[n].Latitud, listado[n]["Longitud (WGS84)"]], { icon: gasIcon }).addTo(map);
+  gasolineraMarker.bindPopup(`<b>${listado[n].Dirección}</b><br>Gasolina : ${listado[n]["Precio Gasolina 95 E5"]} €<br>Diesel: ${listado[n]["Precio Gasoleo A"]} €`).openPopup();
 
 };
 
 
 
-function mapaComoLLegar() {
+function mapaComoLLegar(listado, n) {
 
-  let map = L.map('map').setView([latitudUser, longitudUser], 15);
+  let map4 = L.map('map4').setView([latitudUser, longitudUser], 15);
 
+  
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 30,
-      
-  }).addTo(map);
+    maxZoom: 30,
 
-  const userMarker = L.marker([latitudUser, longitudUser]).addTo(map);
+  }).addTo(map4);
+
+  const userMarker = L.marker([latitudUser, longitudUser]).addTo(map4);
 
   let gasIcon = L.icon({
     iconUrl: '../assets/img/dispenser.png',
     iconSize: [55, 55], // size of the icon
     iconAnchor: [12, 12], // point of the icon which will correspond to marker's location
-    popupAnchor: [0,0] // point fr5om which the popup should open relative to the iconAnchor
+    popupAnchor: [0, 0] // point fr5om which the popup should open relative to the iconAnchor
   })
 
-  const gasolineraMarker = L.marker([gasolinerasDepurado2[0].Latitud, gasolinerasDepurado2[0]["Longitud (WGS84)"]], {icon : gasIcon}).addTo(map);
-  gasolineraMarker.bindPopup(`<b>${gasolinerasDepurado2[0].Dirección}</b><br>Gasolina : ${gasolinerasDepurado2[0]["Precio Gasolina 95 E5"]} €<br>Diesel: ${gasolinerasDepurado2[0]["Precio Gasoleo A"]} €`).openPopup();
-
+  const gasolineraMarker = L.marker([listado[n].Latitud, listado[n]["Longitud (WGS84)"]], { icon: gasIcon }).addTo(map4);
+ 
   L.Routing.control({
     waypoints: [
       L.latLng(latitudUser, longitudUser),
-      L.latLng(gasolinerasDepurado2[0].Latitud, gasolinerasDepurado2[0]["Longitud (WGS84)"])
+      L.latLng(listado[n].Latitud, listado[n]["Longitud (WGS84)"])
     ]
-  }).addTo(map);
+  }).addTo(map4);
 
 
 };
-  
+
 
 
 //MAPA RADIO/
@@ -256,8 +256,8 @@ function mapa2() {
   let map2 = L.map('map2').setView([latitudUser, longitudUser], 9);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      
+    maxZoom: 17,
+
   }).addTo(map2);
 
   const userMarker = L.marker([latitudUser, longitudUser]).addTo(map2);
@@ -266,11 +266,11 @@ function mapa2() {
     iconUrl: '../assets/img/dispenser.png',
     iconSize: [55, 55], // size of the icon
     iconAnchor: [12, 12], // point of the icon which will correspond to marker's location
-    popupAnchor: [0,0] // point fr5om which the popup should open relative to the iconAnchor
+    popupAnchor: [0, 0] // point fr5om which the popup should open relative to the iconAnchor
   })
 
-  for (let i =0; i<pintar.length; i++) {
-    L.marker([pintar[i].Latitud, pintar[i]["Longitud (WGS84)"]], { icon: gasIcon}).addTo(map2);
+  for (let i = 0; i < pintar.length; i++) {
+    L.marker([pintar[i].Latitud, pintar[i]["Longitud (WGS84)"]], { icon: gasIcon }).addTo(map2);
   }
 
 };
@@ -282,19 +282,19 @@ function map3() {
   let map3 = L.map('map3').setView([pintar[0].Latitud, pintar[0]["Longitud (WGS84)"]], 9);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      
+    maxZoom: 17,
+
   }).addTo(map3);
 
   let gasIcon = L.icon({
     iconUrl: '../assets/img/dispenser.png',
     iconSize: [55, 55], // size of the icon
     iconAnchor: [12, 12], // point of the icon which will correspond to marker's location
-    popupAnchor: [0,0] // point fr5om which the popup should open relative to the iconAnchor
+    popupAnchor: [0, 0] // point fr5om which the popup should open relative to the iconAnchor
   })
 
-  for (let i =0; i<pintar.length; i++) {
-    L.marker([pintar[i].Latitud, pintar[i]["Longitud (WGS84)"]], { icon: gasIcon}).addTo(map3);
+  for (let i = 0; i < pintar.length; i++) {
+    L.marker([pintar[i].Latitud, pintar[i]["Longitud (WGS84)"]], { icon: gasIcon }).addTo(map3);
   }
 
 };
@@ -327,6 +327,7 @@ if (document.title == "GASOLINE HACK - Home") {
 //FUNCIONALIDADES BUSQUEDA GASOLINERAS PROVINCIA
 if (document.title == "GASOLINE HACK - Gasolineras mas baratas de tu provincia") {
   let pintar;
+  let gasolineraSeleccionada;
 
   getUserUbication()
 
@@ -340,14 +341,38 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas de tu provincia")
     event.preventDefault();
     provinciaElegida = event.target.provincia.value;
     combustibleElegido = event.target.combustible.value;
+    document.getElementById("seleccionProvincia").style.display = "none";
+    document.getElementById("listaProvincia").style.display = "block";
+
     //Filtrado 2
-    depurar2()
+    depurar2();
     acotarProvincia();
-    ordenarPorPrecio(gasolinerasProvincia);
+    getGasolineraMasCercana(gasolinerasProvincia)
+    ordenarPorPrecio(gasolinerasProvincia)
     pintarTabla(gasolinerasProvincia);
     map3();
+
+  });
+
+  //OBTENER GASOLINERA ELEGIDA
+  const radio = document.getElementById("radius");
+  radio.addEventListener("submit",function (event) {
+    event.preventDefault();
+    gasolineraSeleccionada = event.target.gasolineraSeleccionada.value;
+    document.getElementById("listaProvincia").style.display = "none";
+    document.getElementById("vistaUnica").style.display = "block";
+    pintarTarjetaGasolinera(gasolinerasProvincia[gasolineraSeleccionada]);
+    mapa1(gasolinerasProvincia, gasolineraSeleccionada);
+  
   });
   
+  let comoLlegar = document.getElementById("mostrarMapaP");
+  comoLlegar.onclick = function(){
+    mapaComoLLegar(gasolinerasProvincia, gasolineraSeleccionada)
+  
+    document.getElementById("map").style.display = "none";
+  }
+
 
 }
 
@@ -364,7 +389,7 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas cerca de tu ubica
   getGasolineras().then(() => {
     depurar1();
     depurar2();
-    getGasolineraMasCercana();
+    getGasolineraMasCercana(gasolinerasDepurado2);
     ordenarPorDistancia();
   });
 
@@ -380,12 +405,35 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas cerca de tu ubica
   botonRadio.addEventListener("submit", function (event) {
     event.preventDefault();
     radioElegido = event.target.distancia.value;
+    combustibleElegido = event.target.combustible.value;
+
+    document.getElementById("seleccionRadio").style.display = "none";
+    document.getElementById("listaProvincia").style.display = "block";
+
     acotarRadio();
     ordenarPorPrecio(gasolinerasRadio);
     pintarTabla(gasolinerasRadio);
-    mapa2()
-  })
+    mapa2();
+  });
 
+  // //OBTENER GASOLINERA ELEGIDA
+  const select = document.getElementById("radius");
+  select.addEventListener("submit",function (event) {
+    event.preventDefault();
+    gasolineraSeleccionada = event.target.gasolineraSeleccionada.value;
+    document.getElementById("listaProvincia").style.display = "none";
+    document.getElementById("vistaUnica").style.display = "block";
+    pintarTarjetaGasolinera(gasolinerasRadio[gasolineraSeleccionada]);
+    mapa1(gasolinerasRadio, gasolineraSeleccionada);
+  
+  });
+  
+  let comoLlegar = document.getElementById("mostrarMapaP");
+  comoLlegar.onclick = function(){
+    mapaComoLLegar(gasolinerasRadio, gasolineraSeleccionada)
+  
+    document.getElementById("map").style.display = "none";
+  }
 
 
 }
@@ -393,16 +441,22 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas cerca de tu ubica
 
 //FUNCIONALIDAD GASOLINERA MAS CERCANA
 
-if (document.title == "GASOLINE HACK - Tu gasolinera mas cercana"){
-  
+if (document.title == "GASOLINE HACK - Tu gasolinera mas cercana") {
+
   getUserUbication()
   getGasolineras().then(() => {
     depurar1();
     depurar2();
-    getGasolineraMasCercana();
+    getGasolineraMasCercana(gasolinerasDepurado2);
     ordenarPorDistancia();
     pintarTarjetaGasolinera(gasolinerasDepurado2[0])
-    mapa1()
+    mapa1(gasolinerasDepurado2, 0)
   });
 
+  let comoLlegar = document.getElementById("mostrarMapa");
+  comoLlegar.onclick = function(){
+    mapaComoLLegar(gasolinerasDepurado2, 0)
+  
+    document.getElementById("map").style.display = "none";
+  } 
 };

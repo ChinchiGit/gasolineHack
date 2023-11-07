@@ -26,6 +26,29 @@
     <header>
         <h1>GASOLINE HACK</h1>
         <H3>Queremos ayudarte a ahorrar cuando llenas el depósito...</H3>
+        <nav>
+            <section class="navButton">
+                <img src="../assets/img/homeIcon.png" alt="Home Icon">
+                <a href="../index.html">HOME</a>
+            </section>
+            <section class="navButton">
+                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
+                <a href="./#">BUSCAR POR PROVINCIA</a>
+
+            </section>
+
+            <section class="navButton">
+                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
+                <a href="./searchRadio.html">BUSCAR POR RADIO</a>
+
+            </section>
+            <section class="navButton">
+                <img src="../assets/img/worksIcon.png" alt="My Works Icon">
+                <a href="./singlegas.html">LA MAS CERCANA</a>
+            </section>
+        </nav>
+
+        
     </header>
     <main>
         <section id="seleccionProvincia">
@@ -87,8 +110,8 @@
 
                 <label for="combustible">Elige tu combustible:</label>
                 <select name="combustible" id="combustible">
-                    <option value="Precio gasóleo A">Diesel</option>
-                    <option value="Precio gasolina 95 E5">Gasolina</option>
+                    <option value="Precio Gasoleo A">Diesel</option>
+                    <option value="Precio Gasolina 95 E5">Gasolina</option>
                 </select>
 
 
@@ -99,33 +122,67 @@
 
 
         <section id="listaProvincia">
-            <article>
-
-
-            </article>
             <article id="tablaProvincia">
+                <h3 id="aviso">
+
+                </h3>
+                <form action="#" id="radius">
                 <table class="tabla-gasolineras">
                     <thead>
                         <tr>
                             <th>LOCALIDAD</th>
                             <th>DIRECCION</th>
-                            <th>MARCA</th>
-                            <th>€/L GASOLINA</th>
-                            <th>€/L DIESEL</th>
+                            <th>PRECIO</th>
+                            <th>+ INFO</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
-                <button id="mostrarMapa">VER EN EL MAPA</button>
+                <input type="submit" id="mostrarMapa" value ="VER DETALLES">
+                </form>
             </article>
+
             <article id="mapaProvincia">
                 <div id="map3"></div>
             </article>
+        </section>
+
+        <section id="vistaUnica">
+            <article id="tarjetaCercana">
+                
+            </article>
+            <button id="mostrarMapaP">CÓMO LLEGAR</button>
+            <article>
+                <div id="map"></div>
+                <div id="map4"></div>
+            </article>
+
 
         </section>
 
-        <section></section>
+
+        
+
+            <!-- <article id="busquedaAvanzada">
+                <form action="#" id="ordenarProvincia">
+                    <label for="criterioProvincia">Orena las gasolineras de la provincia elegida:</label>
+                    <select name="criterio" id="criterio">
+                        <option value= "Municipio">LOCALIDAD (de la A a la Z)</option>
+                        <option value="Rótulo">MARCA</option>
+                        <option value="Precio Gasoleo A">DIESEL MAS BARATO</option>
+                        <option value="Precio Gasolina 95 E5">GASOLINA MAS BARATA</option>
+                        <option value="distancia">DISTANCIA</option>
+    
+                    <input id="buscar" type="submit" value="ORDENAR">
+                </form>
+
+            </article> -->
+
+
+     
+
+
 
     </main>
     <footer>
