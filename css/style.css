@@ -5,6 +5,13 @@
     margin: auto;
 }
 
+#listaProvincia{
+  display: none;
+}
+
+#vistaUnica{
+  display: none;
+}
 
 #map {
     width: 75%;
@@ -23,3 +30,9 @@
     height: 300px;
     margin: auto;
     }
+
+#map4 {
+  width: 75%;
+  height: 300px;
+  margin: auto;
+  }
