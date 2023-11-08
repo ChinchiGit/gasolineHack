@@ -1,0 +1,306 @@
+:root {
+  --rojoHoover: #FB3640; 
+  --grey: rgb(95, 94, 93);
+  --blueMain: rgb(28, 51, 97);
+  --blueFondo: #1F487E;
+  --blueClear : rgb(36, 121, 158);
+}
+
+@font-face {
+  font-family: Lemonmilk_bold;  
+  src: url(../assets/fonts/LEMONMILK-Bold.otf);
+}
+
+@font-face {
+  font-family: Lemonmilk_regular;  
+  src: url(../assets/fonts/LEMONMILK-Light.otf);
+}
+
+
+body{
+  background-image: url(../assets/img/asfalto_fondo.jpg);
+  background-size: cover;
+}
+
+header{
+  text-align: center;
+  font-family: Lemonmilk_regular;
+  color: white;
+  background-color:rgba(36, 121, 158, 0.7);
+}
+
+main{
+  padding-top: 5px;
+}
+
+footer{
+  background-color: var(--blueFondo);
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0; 
+}
+
+section{
+  background-color: rgba(28, 51, 97, 0.7);
+  width: 95%;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+article{
+  background-color: rgba(36, 121, 158, 0.7);
+  width: 80%;
+  border-radius: 15px;
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+
+
+#banner{
+  width: 90%;
+  margin: auto;
+  max-width: 400px;
+}
+
+a:link, a:visited, a:active {
+  text-decoration:none;
+  color: white;
+}
+
+
+
+nav{
+  font-family: Lemonmilk_regular;
+  font-size: small;
+  display: flex;
+  align-content: space-around;
+  background-color: rgba(95, 94, 93, 0.6);
+  text-align: center;
+  margin: auto;
+  color: white;
+  padding:8px;
+  margin-bottom: 10px;
+
+}
+
+button, input{
+  font-family: Lemonmilk_regular;
+  font-size: small;
+  background-color: rgba(95, 94, 93, 0.6);
+  margin: auto;
+  color: white;
+  padding:8px;
+  margin-bottom: 10px;
+  text-align: center;
+
+}
+
+.navButton{
+  background-color: var(--blueMain);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 8px;
+  width: 120px;
+  box-shadow: 6px 1px 20px 8px rgba(0,0,0,0.4);
+  border-radius: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.navButton:hover {
+  background-color: var(--rojoHoover);
+}
+
+.navButton > img{
+  width: 30px;
+  height: 30px;
+}
+
+table{
+
+  border-color: black;
+  border-width: 1px;
+  border-style: ridge;
+  text-align: center;     
+  margin: 40px auto;
+  border-collapse: collapse;
+  background-color: var(--grey);
+  font-size: 0.7em;
+  color: white;
+}
+
+td{
+  border-color: black;
+  border-width: 1px;
+  border-style: ridge;
+  width: 25%;
+  padding: 5px;
+  font-family: Lemonmilk_regular;
+}
+
+th{
+  background-color: var(--blueFondo);
+  border-color: black;
+  border-width: 1px;
+  border-style: ridge;
+  padding: 5px;
+  font-family: Lemonmilk_bold;
+}
+
+form{
+  font-family: Lemonmilk_regular;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+form > input, select, label{
+ width: 65%;
+ margin-bottom: 20px;
+}
+
+#listaProvincia{
+  display: none;
+  flex-direction: column
+}
+
+#vistaUnica{
+  display: none;
+  flex-direction: column
+}
+
+#index{
+  display: flex;
+  flex-direction: column
+}
+
+#map4{
+  display: none;
+}
+
+#map, #map2, #map3, #map4  {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    border-radius: 20px;
+    margin-bottom: 15px;
+
+  }
+
+li{
+  font-family:Lemonmilk_regular;
+  margin-bottom: 5px;
+}
+
+#mensaje, #mensaje2{
+  font-family: Lemonmilk_bold;
+  color: white;
+  background-color: var(--grey);
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+h5{
+  width:80%;
+  margin: auto;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+p{
+  font-family:Lemonmilk_regular;
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  color: white;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+
+@media only screen and (max-width: 768px){
+
+}
+
+@media only screen and (min-width: 768px) {
+
+  body{
+    max-width: 800px;
+    margin: auto;
+  }
+
+  header{
+    border-radius:20px;
+    margin-top: 25px;
+  }
+
+  footer{
+    max-width: 800px;
+    border-radius: 5px;
+  }
+
+
+  article {
+    width: 40%
+  }
+
+
+  #listaProvincia{
+    display: none;
+    flex-direction: row
+  }
+  
+  #vistaUnica{
+    display: none;
+    flex-direction: row
+  }
+
+  #singleGas{
+    display: flex;
+    flex-direction: row
+  }
+
+  #infoSingleGas{
+    width: 35%;
+  }
+
+  #mapaSingleGas{
+    width: 50%;
+  }
+
+  #tablaProvincia{
+    width: 35%;
+  }
+  #mapaProvincia{
+    width: 50%;
+  }
+
+  #map4{
+    display: none;
+  }
+
+  #map, #map2, #map3, #map4{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+  }
+
+
+}

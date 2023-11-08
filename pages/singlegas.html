@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GASOLINE HACK - Tu gasolinera mas cercana</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    
+
+    <link rel="stylesheet" href="../css/normalice.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+
+</head>
+
+<body>
+    <header>
+        <img id="banner" src="../assets/img/gasolinehack.png" alt="Gasoline Hack Logo">
+        <h5>Queremos ayudarte a ahorrar cuando llenas el depósito...</h5>
+        <nav>
+            <section class="navButton">
+                <img src="../assets/img/nav_icon01.png" alt="Home Icon">
+                <a href="../index.html">HOME</a>
+            </section>
+            <section class="navButton">
+                <img src="../assets/img/nav_icon04.png" alt="State search Icon">
+                <a href="./searchProvincia.html">PROVINCIA</a>
+
+            </section>
+
+            <section class="navButton">
+                <img src="../assets/img/nav_icon02.png" alt="Radio SearchS Icon">
+                <a href="./searchRadio.html"> RADIO</a>
+
+            </section>
+
+        </nav>
+    </header>
+    <main>
+        <section id="singleGas">
+            <article id="infoSingleGas">
+                <h4 id="mensaje">TU GASOLINERA MAS CERCANA</h4>
+                <div id="tarjetaCercana">
+
+                </div>
+                <button id="mostrarMapaP">CÓMO LLEGAR</button>
+            </article>
+            
+                
+            <article id="mapaSingleGas">
+                <div id="map"></div>
+                <div id="map4"></div>
+               
+            </article>
+
+
+        </section>
+
+
+    </main>
+
+    <footer>
+        <img src="../assets/img/logo_footer.png" alt="Gasoline Hack Logo">
+    </footer>
+    <script src="../script.js"></script>
+</body>
+
+</html>

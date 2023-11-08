@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GASOLINE HACK - Gasolineras mas baratas cerca de tu ubicación</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <link rel="stylesheet" href="../css/normalice.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <img id="banner" src="../assets/img/gasolinehack.png" alt="Gasoline Hack Logo">
+        <h5>Queremos ayudarte a ahorrar cuando llenas el depósito...</h5>
+        <nav>
+            <section class="navButton">
+                <img src="../assets/img/nav_icon01.png" alt="Home Icon">
+                <a href="../index.html">HOME</a>
+            </section>
+            <section class="navButton">
+                <img src="../assets/img/nav_icon04.png" alt="State search Icon">
+                <a href="./searchProvincia.html">PROVINCIA</a>
+            </section>
+
+            <section class="navButton">
+                <img src="../assets/img/nav_icon03.png" alt="Nearest Icon">
+                <a href="./singlegas.html">MAS CERCANA</a>
+            </section>
+        </nav>
+    </header>
+    <main>
+        <section id="seleccionRadio">
+            <article>
+                <form action="#" id="eleccionRadio">
+                    <label for="distancia">Elige tu radio de búsqueda en Km. : </label>
+                    <input type="range" name="distancia" id="distancia" min="10" max="50" step="5" value="25"
+                        required />
+                    <output class="radioBusqueda" for="distancia"></output>
+                    <label for="combustible">Elige tu combustible:</label>
+                    <select name="combustible" id="combustible" required>
+                        <option value="Precio Gasoleo A">Diesel</option>
+                        <option value="Precio Gasolina 95 E5">Gasolina</option>
+
+                        <input id="buscar" type="submit" value="Buscar">
+                </form>
+            </article>
+        </section>
+
+
+        <section id="listaProvincia" class="contenedor">
+            <article id="tablaProvincia">
+                <h4 id="mensaje"></h4>
+                <form action="#" id="radius">
+                    <table class="tabla-gasolineras">
+                        <thead>
+                            <tr>
+                                <th>LOCALIDAD</th>
+                                <th>DIRECCION</th>
+                                <th>PRECIO</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <input type="submit" id="mostrarMapa" value="VER DETALLES">
+                </form>
+            </article>
+
+            <article id="mapaProvincia">
+                <div id="map2"></div>
+            </article>
+        </section>
+
+        <section id="vistaUnica" class="contenedor">
+            <article>
+                <h4 id="mensaje2"></h4>
+                <div id="tarjetaCercana">
+
+                </div>
+                <button id="mostrarMapaP">CÓMO LLEGAR</button>
+            </article>
+            <article>
+                <div id="map"></div>
+                <div id="map4"></div>
+            </article>
+
+
+        </section>
+
+    </main>
+    <footer>
+        <img src="../assets/img/logo_footer.png" alt="Gasoline Hack Logo">
+    </footer>
+    <script src="../script.js"></script>
+</body>
+
+</html>
