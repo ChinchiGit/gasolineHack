@@ -1,7 +1,7 @@
 
 # GASOLINE HACK
 
-Se trata app web para encontrar las gasolineras mas baratas. Las diferencias de precio entre estaciones de servicio pueden llegar a ser de hasta 20 céntimos de euro por litro. El depósito de un utilitario tiene capacidad para unos 50 litros de combustible. Por lo tanto, el ahorro buscando las gasolineras con mejores precios puede ser de unos 10 € por depósito.  
+Se trata de una app web para encontrar las gasolineras mas baratas. Las diferencias de precio entre estaciones de servicio pueden llegar a ser de hasta 20 céntimos de euro por litro. El depósito de un utilitario tiene capacidad para unos 50 litros de combustible. Por lo tanto, el ahorro buscando las gasolineras con mejores precios puede ser de unos 10 € por depósito.  
 
 ## Objetivos
 
