@@ -7,12 +7,11 @@ let longitudUser;
 let buscarProvincia = document.getElementById("eleccionUsuario");
 let provinciaElegida;
 let combustibleElegido;
-let localidadElegida;
 let gasolinerasProvincia = [];
 let botonRadio = document.getElementById("eleccionRadio")
 let radioElegido;
 let gasolinerasRadio = [];
-let criterioOrdenar;
+
 
 // ******** DECLARACION DE FUNCIONES********
 
@@ -117,8 +116,7 @@ function pintarTabla(listado) {
     tr.innerHTML =
       `<td>${gasolinera.Localidad}</td>
     <td>${gasolinera.Dirección}</td>
-    <td>${gasolinera[combustibleElegido]} €</td>
-    <td><input type="radio" name="gasolineraSeleccionada" value = ${counter} required></td>
+    <td>${gasolinera[combustibleElegido]} € <input type="radio" name="gasolineraSeleccionada" value = ${counter} required></td>
     `;
 
     tbody.appendChild(tr);
@@ -328,6 +326,8 @@ if (document.title == "GASOLINE HACK - Home") {
 if (document.title == "GASOLINE HACK - Gasolineras mas baratas de tu provincia") {
   let pintar;
   let gasolineraSeleccionada;
+  let combustible;
+  let mensaje
 
   getUserUbication()
 
@@ -341,8 +341,13 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas de tu provincia")
     event.preventDefault();
     provinciaElegida = event.target.provincia.value;
     combustibleElegido = event.target.combustible.value;
+    if(combustibleElegido == "Precio Gasolina 95 E5"){
+      combustible = "GASOLINA";
+    } else  {combustible = "DIESEL"};
+    mensaje = `GASOLINERAS MAS BARATAS DE ${provinciaElegida} </br>COMBUSTIBLE: ${combustible}`;
+    document.getElementById("mensaje").innerHTML = mensaje;
     document.getElementById("seleccionProvincia").style.display = "none";
-    document.getElementById("listaProvincia").style.display = "block";
+    document.getElementById("listaProvincia").style.display = "flex";
 
     //Filtrado 2
     depurar2();
@@ -360,7 +365,8 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas de tu provincia")
     event.preventDefault();
     gasolineraSeleccionada = event.target.gasolineraSeleccionada.value;
     document.getElementById("listaProvincia").style.display = "none";
-    document.getElementById("vistaUnica").style.display = "block";
+    document.getElementById("vistaUnica").style.display = "flex";
+    document.getElementById("mensaje2").innerHTML = "GASOLINERA SELECIONADA";
     pintarTarjetaGasolinera(gasolinerasProvincia[gasolineraSeleccionada]);
     mapa1(gasolinerasProvincia, gasolineraSeleccionada);
   
@@ -371,6 +377,7 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas de tu provincia")
     mapaComoLLegar(gasolinerasProvincia, gasolineraSeleccionada)
   
     document.getElementById("map").style.display = "none";
+    document.getElementById("map4").style.display = "block";
   }
 
 
@@ -406,9 +413,14 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas cerca de tu ubica
     event.preventDefault();
     radioElegido = event.target.distancia.value;
     combustibleElegido = event.target.combustible.value;
+    if(combustibleElegido == "Precio Gasolina 95 E5"){
+      combustible = "GASOLINA";
+    } else  {combustible = "DIESEL"};
+    let mensaje = `GASOLINERAS MAS BARATAS EN UN RADIO DE ${radioElegido} KM </br>COMBUSTIBLE: ${combustible}`;
+    document.getElementById("mensaje").innerHTML = mensaje;
 
     document.getElementById("seleccionRadio").style.display = "none";
-    document.getElementById("listaProvincia").style.display = "block";
+    document.getElementById("listaProvincia").style.display = "flex";
 
     acotarRadio();
     ordenarPorPrecio(gasolinerasRadio);
@@ -421,8 +433,9 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas cerca de tu ubica
   select.addEventListener("submit",function (event) {
     event.preventDefault();
     gasolineraSeleccionada = event.target.gasolineraSeleccionada.value;
+    document.getElementById("mensaje2").innerHTML = "GASOLINERA SELECIONADA";
     document.getElementById("listaProvincia").style.display = "none";
-    document.getElementById("vistaUnica").style.display = "block";
+    document.getElementById("vistaUnica").style.display = "flex";
     pintarTarjetaGasolinera(gasolinerasRadio[gasolineraSeleccionada]);
     mapa1(gasolinerasRadio, gasolineraSeleccionada);
   
@@ -433,6 +446,7 @@ if (document.title == "GASOLINE HACK - Gasolineras mas baratas cerca de tu ubica
     mapaComoLLegar(gasolinerasRadio, gasolineraSeleccionada)
   
     document.getElementById("map").style.display = "none";
+    document.getElementById("map4").style.display = "block";
   }
 
 
@@ -453,10 +467,11 @@ if (document.title == "GASOLINE HACK - Tu gasolinera mas cercana") {
     mapa1(gasolinerasDepurado2, 0)
   });
 
-  let comoLlegar = document.getElementById("mostrarMapa");
+  let comoLlegar = document.getElementById("mostrarMapaP");
   comoLlegar.onclick = function(){
     mapaComoLLegar(gasolinerasDepurado2, 0)
   
     document.getElementById("map").style.display = "none";
+    document.getElementById("map4").style.display = "block";
   } 
 };

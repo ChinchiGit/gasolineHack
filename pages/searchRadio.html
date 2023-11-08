@@ -23,66 +23,60 @@
 
 <body>
     <header>
-        <h1>GASOLINE HACK</h1>
-        <H3>Queremos ayudarte a ahorrar cuando llenas el depósito...</H3>
+        <img id="banner" src="../assets/img/gasolinehack.png" alt="Gasoline Hack Logo">
+        <h5>Queremos ayudarte a ahorrar cuando llenas el depósito...</h5>
         <nav>
             <section class="navButton">
-                <img src="../assets/img/homeIcon.png" alt="Home Icon">
+                <img src="../assets/img/nav_icon01.png" alt="Home Icon">
                 <a href="../index.html">HOME</a>
             </section>
             <section class="navButton">
-                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
-                <a href="./searchProvincia.html">BUSCAR POR PROVINCIA</a>
-
+                <img src="../assets/img/nav_icon04.png" alt="State search Icon">
+                <a href="./searchProvincia.html">PROVINCIA</a>
             </section>
 
             <section class="navButton">
-                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
-                <a href="./#">BUSCAR POR RADIO</a>
-
-            </section>
-            <section class="navButton">
-                <img src="../assets/img/worksIcon.png" alt="My Works Icon">
-                <a href="./singlegas.html">LA MAS CERCANA</a>
+                <img src="../assets/img/nav_icon03.png" alt="Nearest Icon">
+                <a href="./singlegas.html">MAS CERCANA</a>
             </section>
         </nav>
     </header>
     <main>
         <section id="seleccionRadio">
-            <form action="#" id="eleccionRadio">
-                <label for="distancia">Elige tu radio de búsqueda en Km. : </label>
-                <input type="range" name="distancia" id="distancia" min="10" max="50" step="5" value="25" required/>
-                <output class="radioBusqueda" for="distancia"></output>
-                <label for="combustible">Elige tu combustible:</label>
-                <select name="combustible" id="combustible" required>
-                    <option value="Precio Gasoleo A">Diesel</option>
-                    <option value="Precio Gasolina 95 E5">Gasolina</option>
+            <article>
+                <form action="#" id="eleccionRadio">
+                    <label for="distancia">Elige tu radio de búsqueda en Km. : </label>
+                    <input type="range" name="distancia" id="distancia" min="10" max="50" step="5" value="25"
+                        required />
+                    <output class="radioBusqueda" for="distancia"></output>
+                    <label for="combustible">Elige tu combustible:</label>
+                    <select name="combustible" id="combustible" required>
+                        <option value="Precio Gasoleo A">Diesel</option>
+                        <option value="Precio Gasolina 95 E5">Gasolina</option>
 
-                <input id="buscar" type="submit" value="Buscar">
-            </form>
-
+                        <input id="buscar" type="submit" value="Buscar">
+                </form>
+            </article>
         </section>
 
 
-        <section id="listaProvincia">
+        <section id="listaProvincia" class="contenedor">
             <article id="tablaProvincia">
-                <h3 id="aviso">
-
-                </h3>
+                <h4 id="mensaje"></h4>
                 <form action="#" id="radius">
-                <table class="tabla-gasolineras">
-                    <thead>
-                        <tr>
-                            <th>LOCALIDAD</th>
-                            <th>DIRECCION</th>
-                            <th>PRECIO</th>
-                            <th>+ INFO</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                <input type="submit" id="mostrarMapa" value ="VER DETALLES">
+                    <table class="tabla-gasolineras">
+                        <thead>
+                            <tr>
+                                <th>LOCALIDAD</th>
+                                <th>DIRECCION</th>
+                                <th>PRECIO</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <input type="submit" id="mostrarMapa" value="VER DETALLES">
                 </form>
             </article>
 
@@ -91,11 +85,14 @@
             </article>
         </section>
 
-        <section id="vistaUnica">
-            <article id="tarjetaCercana">
-                
+        <section id="vistaUnica" class="contenedor">
+            <article>
+                <h4 id="mensaje2"></h4>
+                <div id="tarjetaCercana">
+
+                </div>
+                <button id="mostrarMapaP">CÓMO LLEGAR</button>
             </article>
-            <button id="mostrarMapaP">CÓMO LLEGAR</button>
             <article>
                 <div id="map"></div>
                 <div id="map4"></div>
@@ -106,7 +103,7 @@
 
     </main>
     <footer>
-
+        <img src="../assets/img/logo_footer.png" alt="Gasoline Hack Logo">
     </footer>
     <script src="../script.js"></script>
 </body>

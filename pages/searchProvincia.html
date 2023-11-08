@@ -24,27 +24,22 @@
 
 <body>
     <header>
-        <h1>GASOLINE HACK</h1>
-        <H3>Queremos ayudarte a ahorrar cuando llenas el depósito...</H3>
+        <img id="banner" src="../assets/img/gasolinehack.png" alt="Gasoline Hack Logo">
+        <h5>Queremos ayudarte a ahorrar cuando llenas el depósito...</h5>
         <nav>
             <section class="navButton">
-                <img src="../assets/img/homeIcon.png" alt="Home Icon">
+                <img src="../assets/img/nav_icon01.png" alt="Home Icon">
                 <a href="../index.html">HOME</a>
             </section>
-            <section class="navButton">
-                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
-                <a href="./#">BUSCAR POR PROVINCIA</a>
-
-            </section>
 
             <section class="navButton">
-                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
-                <a href="./searchRadio.html">BUSCAR POR RADIO</a>
+                <img src="../assets/img/nav_icon02.png" alt="Radio Search Icon">
+                <a href="./searchRadio.html">RADIO</a>
 
             </section>
             <section class="navButton">
-                <img src="../assets/img/worksIcon.png" alt="My Works Icon">
-                <a href="./singlegas.html">LA MAS CERCANA</a>
+                <img src="../assets/img/nav_icon03.png" alt="Nearest Icon">
+                <a href="./singlegas.html">MAS CERCANA</a>
             </section>
         </nav>
 
@@ -52,6 +47,7 @@
     </header>
     <main>
         <section id="seleccionProvincia">
+            <article>
             <form action="#" id="eleccionUsuario">
                 <label for="provincia">Selecciona una provincia:</label>
                 <select name="provincia" id="provincia">
@@ -117,15 +113,14 @@
 
                 <input id="buscar" type="submit" value="Buscar">
             </form>
+        </article>
 
         </section>
 
 
-        <section id="listaProvincia">
+        <section id="listaProvincia" class="contenedor">
             <article id="tablaProvincia">
-                <h3 id="aviso">
-
-                </h3>
+                <h4 id="mensaje"></h4>
                 <form action="#" id="radius">
                 <table class="tabla-gasolineras">
                     <thead>
@@ -133,7 +128,7 @@
                             <th>LOCALIDAD</th>
                             <th>DIRECCION</th>
                             <th>PRECIO</th>
-                            <th>+ INFO</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -148,11 +143,15 @@
             </article>
         </section>
 
-        <section id="vistaUnica">
-            <article id="tarjetaCercana">
-                
+        <section id="vistaUnica" class="contenedor">
+            <article>
+                <h4 id="mensaje2"></h4>
+                <div id="tarjetaCercana">
+
+                </div>
+                <button id="mostrarMapaP">CÓMO LLEGAR</button>
             </article>
-            <button id="mostrarMapaP">CÓMO LLEGAR</button>
+
             <article>
                 <div id="map"></div>
                 <div id="map4"></div>
@@ -162,32 +161,11 @@
         </section>
 
 
-        
-
-            <!-- <article id="busquedaAvanzada">
-                <form action="#" id="ordenarProvincia">
-                    <label for="criterioProvincia">Orena las gasolineras de la provincia elegida:</label>
-                    <select name="criterio" id="criterio">
-                        <option value= "Municipio">LOCALIDAD (de la A a la Z)</option>
-                        <option value="Rótulo">MARCA</option>
-                        <option value="Precio Gasoleo A">DIESEL MAS BARATO</option>
-                        <option value="Precio Gasolina 95 E5">GASOLINA MAS BARATA</option>
-                        <option value="distancia">DISTANCIA</option>
-    
-                    <input id="buscar" type="submit" value="ORDENAR">
-                </form>
-
-            </article> -->
-
-
-     
-
-
-
     </main>
     <footer>
-
+        <img src="../assets/img/logo_footer.png" alt="Gasoline Hack Logo">
     </footer>
+
     <script src="../script.js"></script>
 </body>
 

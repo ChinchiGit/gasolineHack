@@ -26,38 +26,39 @@
 
 <body>
     <header>
-        <h1>GASOLINE HACK</h1>
-        <H3>Queremos ayudarte a ahorrar cuando llenas el depósito...</H3>
+        <img id="banner" src="../assets/img/gasolinehack.png" alt="Gasoline Hack Logo">
+        <h5>Queremos ayudarte a ahorrar cuando llenas el depósito...</h5>
         <nav>
             <section class="navButton">
-                <img src="../assets/img/homeIcon.png" alt="Home Icon">
+                <img src="../assets/img/nav_icon01.png" alt="Home Icon">
                 <a href="../index.html">HOME</a>
             </section>
             <section class="navButton">
-                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
-                <a href="./searchProvincia.html">BUSCAR POR PROVINCIA</a>
+                <img src="../assets/img/nav_icon04.png" alt="State search Icon">
+                <a href="./searchProvincia.html">PROVINCIA</a>
 
             </section>
 
             <section class="navButton">
-                <img src="../assets/img/aboutMeIcon.png" alt="About Me Icon">
-                <a href="./searchRadio.html">BUSCAR POR RADIO</a>
+                <img src="../assets/img/nav_icon02.png" alt="Radio SearchS Icon">
+                <a href="./searchRadio.html"> RADIO</a>
 
             </section>
-            <section class="navButton">
-                <img src="../assets/img/worksIcon.png" alt="My Works Icon">
-                <a href="./#">LA MAS CERCANA</a>
-            </section>
+
         </nav>
     </header>
     <main>
-        <section>
-            <article id="tarjetaCercana">
-                
+        <section id="singleGas">
+            <article id="infoSingleGas">
+                <h4 id="mensaje">TU GASOLINERA MAS CERCANA</h4>
+                <div id="tarjetaCercana">
+
+                </div>
+                <button id="mostrarMapaP">CÓMO LLEGAR</button>
             </article>
-            <button id="mostrarMapa">CÓMO LLEGAR</button>
+            
                 
-            <article>
+            <article id="mapaSingleGas">
                 <div id="map"></div>
                 <div id="map4"></div>
                
@@ -70,7 +71,7 @@
     </main>
 
     <footer>
-
+        <img src="../assets/img/logo_footer.png" alt="Gasoline Hack Logo">
     </footer>
     <script src="../script.js"></script>
 </body>
