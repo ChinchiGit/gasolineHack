@@ -16,13 +16,14 @@ El objetivo de este proyecto es planificar y desarrollar una web app que permita
 ## Acceder
 
 La app se encuentra desplegada y en condiciones de uso en el siguiente enlace:
+[https://chinchigit.github.io/gasolineHack/]
 
 
 ## Características
 
 La web app tiene las siguientes características:
 
-1. Permite a los usuarios encontrar la gasolinera más barata de su procincia o de su zona, eligiendo un radio de proximidad entre 10 y 15 km.
+1. Permite a los usuarios encontrar la gasolinera más barata de su procincia o de su zona, eligiendo un radio de proximidad entre 10 y 50 km.
 2. Utiliza la geolocalización para mostrar las gasolineras más cercanas.
 3. Muestra el precio del combustible de cada gasolinera además de otros detalles como la marca o el horario.
 4. Permite a los usuarios conocer la distancia a la gasolinera elegida y la ruta para llegar a la misma.
